@@ -13,6 +13,7 @@
                         <th>ID</th>
                         <th>Name</th>
                         <th>Father Name</th>
+                        <th>Gender</th>
                         <th>Dob</th>
                         <th>View</th>
                         <th>Edit</th>
@@ -23,6 +24,7 @@
                             <td>{{ $student -> id }}</td>
                             <td>{{ $student -> name }}</td>
                             <td>{{ $student -> father_name }}</td>
+                            <td>{{ $student -> gender }}</td>
                             <td>{{ $student -> dob }}</td>
                             <td><a href="{{ route('students.show',$student->id) }}" class="btn btn-info">View</a></td>
                             <td><a href="{{ route('students.edit',$student->id) }}" class="btn btn-warning">Edit</a></td>

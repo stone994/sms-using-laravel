@@ -20,6 +20,10 @@ View User
             <td>{{ $students->father_name }}</td>
         </tr>
         <tr>
+            <th>Gender:</th>
+            <td>{{ $students->gender }}</td>
+        </tr>
+        <tr>
             <th>Dob:</th>
             <td>{{ $students->dob }}</td>
         </tr>

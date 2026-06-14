@@ -17,6 +17,15 @@
             <input type="text" name="father_name" class="form-control" value="{{ old('father_name') }}" placeholder="Enter Father Name">
         </div>
         <div class="mb-3">
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender" aria-label="Select your gender identity" type="text"  class="form-control" value="{{ old('gender') }}" placeholder="Enter Gender">
+
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+    
+</select>
+        </div>
+        <div class="mb-3">
             <label for="dob">Date of Birth</label>
             <input type="date" name="dob" class="form-control" value="{{ old('dob') }}" placeholder="Enter Dob">
         </div>

@@ -21,6 +21,10 @@
             <input type="text" name="father_name" value="{{ $students->father_name }}" class="form-control" placeholder="Enter Father Name">
         </div>
         <div class="mb-3">
+            <label for="gender">Gender</label>
+            <input type="text" name="gender" value="{{ $students->gender }}" class="form-control" placeholder="Enter Gender">
+        </div>
+        <div class="mb-3">
             <label for="dob">Date of Birth</label>
             <input type="date" name="dob" value="{{ $students->dob }}" class="form-control">     
         </div>

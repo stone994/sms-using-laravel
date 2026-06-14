@@ -31,11 +31,13 @@ class StudentController extends Controller
         $request->validate([
             'name'=>'required|string',
             'father_name'=>'required|string',
+            'gender'=>'required|string',
             'dob'=>'required|date',
         ]);
         Student::create([
             'name'=>$request->name,
             'father_name'=>$request->father_name,
+            'gender'=>$request->gender,
             'dob'=>$request->dob,
         ]);
         return redirect()->route('students.index')
@@ -68,12 +70,14 @@ class StudentController extends Controller
         $request->validate([
             'name'=>'required|string',
             'father_name'=>'required|string',
+            'gender'=>'required|string',
             'dob'=>'required|date',
         ]);
         $students = Student::where('id',$id)
                 ->create([
             'name'=>$request->name,
             'father_name'=>$request->father_name,
+            'gender'=>$request->gender,
             'dob'=>$request->dob,
         ]);
         return redirect()->route('students.index')
