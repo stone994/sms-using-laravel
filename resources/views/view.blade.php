@@ -24,6 +24,10 @@ View User
             <td>{{ $students->gender }}</td>
         </tr>
         <tr>
+            <th>Hobbies:</th>
+            <td>{{ implode(', ', $students->hobbies) }}</td>
+        </tr>
+        <tr>
             <th>Dob:</th>
             <td>{{ $students->dob }}</td>
         </tr>

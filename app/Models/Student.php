@@ -10,5 +10,8 @@ class Student extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','father_name','gender','dob'];
+    protected $fillable = ['name','father_name','hobbies','gender','dob'];
+    protected $casts = [
+    'hobbies' => 'array',
+];
 }

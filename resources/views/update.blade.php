@@ -29,6 +29,17 @@
     
 </select>
         </div>
+         <div class="mb-3">
+            <label for="hobbies">Hobbies</label></br>
+            <input type="checkbox" id="hobbies" name="hobbies[]" value="cricket">
+            <label for="hobbies"> Cricket</label><br>
+            <input type="checkbox" id="hobbies" name="hobbies[]" value="reading">
+            <label for="hobbies"> Reading</label><br>
+            <input type="checkbox" id="hobbies" name="hobbies[]" value="gardening">
+            <label for="hobbies"> Gardening</label><br>
+            <input type="checkbox" id="hobbies" name="hobbies[]" value="multiple hobbies">
+            <label for="hobbies"> Multiple Hobbies</label><br>
+        </div>
         <div class="mb-3">
             <label for="dob">Date of Birth</label>
             <input type="date" name="dob" value="{{ $students->dob }}" class="form-control">     

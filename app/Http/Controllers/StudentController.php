@@ -32,12 +32,14 @@ class StudentController extends Controller
             'name'=>'required|string',
             'father_name'=>'required|string',
             'gender'=>'required|string',
+            'hobbies'=>'required|array',
             'dob'=>'required|date',
         ]);
         Student::create([
             'name'=>$request->name,
             'father_name'=>$request->father_name,
             'gender'=>$request->gender,
+            'hobbies' => $request->hobbies,
             'dob'=>$request->dob,
         ]);
         return redirect()->route('students.index')
@@ -71,6 +73,7 @@ class StudentController extends Controller
             'name'=>'required|string',
             'father_name'=>'required|string',
             'gender'=>'required|string',
+            'hobbies'=>'required|array',
             'dob'=>'required|date',
         ]);
         $students = Student::where('id',$id)
@@ -78,21 +81,23 @@ class StudentController extends Controller
             'name'=>$request->name,
             'father_name'=>$request->father_name,
             'gender'=>$request->gender,
+            'hobbies' => $request->hobbies,
             'dob'=>$request->dob,
         ]);
         return redirect()->route('students.index')
-        ->with('status','update data Successfullt');
+        ->with('status','update data Successfully');
 
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        $students=Student::find($id);
-        $students->delete();
-         return redirect()->route('students.index')
-        ->with('status','delete Successfullt');
-    }
+    public function destroy($id)
+{
+    $students=Student::where('id', $id)
+    ->delete();
+
+    return redirect()->route('students.index')
+        ->with('status', 'Delete successful');
+}
 }

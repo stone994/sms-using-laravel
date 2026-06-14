@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('father_name');
             $table->string('gender');
+            $table->string('hobbies')->nullable();
             $table->date('dob');
             $table->timestamps();
         });

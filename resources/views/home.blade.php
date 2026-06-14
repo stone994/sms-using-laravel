@@ -14,6 +14,7 @@
                         <th>Name</th>
                         <th>Father Name</th>
                         <th>Gender</th>
+                        <th>Hobbies</th>
                         <th>Dob</th>
                         <th>View</th>
                         <th>Edit</th>
@@ -25,6 +26,7 @@
                             <td>{{ $student -> name }}</td>
                             <td>{{ $student -> father_name }}</td>
                             <td>{{ $student -> gender }}</td>
+                            <td>{{ implode(', ', $student->hobbies) }}</td>
                             <td>{{ $student -> dob }}</td>
                             <td><a href="{{ route('students.show',$student->id) }}" class="btn btn-info">View</a></td>
                             <td><a href="{{ route('students.edit',$student->id) }}" class="btn btn-warning">Edit</a></td>
