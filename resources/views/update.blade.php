@@ -22,7 +22,12 @@
         </div>
         <div class="mb-3">
             <label for="gender">Gender</label>
-            <input type="text" name="gender" value="{{ $students->gender }}" class="form-control" placeholder="Enter Gender">
+            <select id="gender" name="gender" aria-label="Select your gender identity" type="text"  class="form-control" value="{{ $students->gender }}" placeholder="Enter Gender">
+
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+    
+</select>
         </div>
         <div class="mb-3">
             <label for="dob">Date of Birth</label>

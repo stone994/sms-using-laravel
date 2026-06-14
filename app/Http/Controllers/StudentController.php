@@ -74,7 +74,7 @@ class StudentController extends Controller
             'dob'=>'required|date',
         ]);
         $students = Student::where('id',$id)
-                ->create([
+                ->update([
             'name'=>$request->name,
             'father_name'=>$request->father_name,
             'gender'=>$request->gender,
