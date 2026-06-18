@@ -11,7 +11,9 @@ class Student extends Model
     use HasFactory;
 
     protected $fillable = ['name','father_name','hobbies','gender','dob'];
-    protected $casts = [
-    'hobbies' => 'array',
-];
+   
+    
+public function hobbies(){
+    return $this->belongsToMany(Hobbies::class,'student_hobbies','student_id','hobbies_id');
+}
 }

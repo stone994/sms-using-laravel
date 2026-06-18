@@ -25,7 +25,10 @@ View User
         </tr>
         <tr>
             <th>Hobbies:</th>
-            <td>{{ implode(', ', $students->hobbies) }}</td>
+           <td>
+        {{ $student->hobbies->pluck('hobbies')->implode(', ') }}
+    </td> 
+    
         </tr>
         <tr>
             <th>Dob:</th>

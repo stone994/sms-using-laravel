@@ -26,8 +26,11 @@
                             <td>{{ $student -> name }}</td>
                             <td>{{ $student -> father_name }}</td>
                             <td>{{ $student -> gender }}</td>
-                            <td>{{ implode(', ', $student->hobbies) }}</td>
-                            <td>{{ $student -> dob }}</td>
+    <td>
+            @foreach($student->hobbies as $hobbies)
+                {{ $hobbies->name }},
+            @endforeach
+        </td>                        <td>{{ $student -> dob }}</td>
                             <td><a href="{{ route('students.show',$student->id) }}" class="btn btn-info">View</a></td>
                             <td><a href="{{ route('students.edit',$student->id) }}" class="btn btn-warning">Edit</a></td>
                             <td>
