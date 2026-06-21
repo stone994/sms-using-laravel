@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Requests\StudentRequest;
 use Illuminate\Http\Request;
 use App\Models\Student;
+use App\Models\Hobbies;
 class StudentController extends Controller
 {
     /**
@@ -11,79 +12,66 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = Student::all();
-        return view('home',compact('students'));
+$students = Student::with('hobbies')
+    ->orderBy('id','desc')
+    ->get();
+            return view('home',compact('students'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        return view('add');
-    }
+public function create()
+{
+    $hobbies = Hobbies::all();
+    $student = new Student(); // empty model
+
+    return view('add', compact('hobbies', 'student'));
+}
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        $request->validate([
-            'name'=>'required|string',
-            'father_name'=>'required|string',
-            'gender'=>'required|string',
-            'hobbies'=>'required|array',
-            'dob'=>'required|date',
-        ]);
-        Student::create([
-            'name'=>$request->name,
-            'father_name'=>$request->father_name,
-            'gender'=>$request->gender,
-            'hobbies' => $request->hobbies,
-            'dob'=>$request->dob,
-        ]);
-        return redirect()->route('students.index')
-        ->with('status','Add New Student Successfullt');
-    }
+    public function store(StudentRequest $request)
+{
+    $student = Student::create($request->validated());
+
+    $student->hobbies()->attach($request->hobbies_id ?? []);
+
+    return redirect()->route('students.index')
+        ->with('status', 'Student created successfully');
+}
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        $students=Student::find($id);
-        return view('view',compact('students'));
-    }
+   public function show($id)
+{
+    $student = Student::with('hobbies')->findOrFail($id);
+
+    return view('view', compact('student'));
+}
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        $students=Student::find($id);
-        return view('update',compact('students'));   
-    }
+    public function edit(Student $student)
+{
+    $hobbies = Hobbies::all();
+
+    $student->hobbies_id = $student->hobbies->pluck('id')->toArray();
+
+    return view('update', compact('student', 'hobbies'));
+}
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StudentRequest $request, Student $student)
     {
-        $request->validate([
-            'name'=>'required|string',
-            'father_name'=>'required|string',
-            'gender'=>'required|string',
-            'hobbies'=>'required|array',
-            'dob'=>'required|date',
-        ]);
-        $students = Student::where('id',$id)
-                ->update([
-            'name'=>$request->name,
-            'father_name'=>$request->father_name,
-            'gender'=>$request->gender,
-            'hobbies' => $request->hobbies,
-            'dob'=>$request->dob,
-        ]);
+        
+        $student->hobbies()->sync($request->hobbies_id);
+        $student->update($request->validated());
         return redirect()->route('students.index')
         ->with('status','update data Successfully');
 
@@ -92,10 +80,15 @@ class StudentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+   public function destroy($id)
 {
-    $students=Student::where('id', $id)
-    ->delete();
+    $student = Student::findOrFail($id);
+
+    // remove relationships first
+    $student->hobbies()->detach();
+
+    // then delete student
+    $student->delete();
 
     return redirect()->route('students.index')
         ->with('status', 'Delete successful');

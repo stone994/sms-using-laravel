@@ -5,46 +5,16 @@
 @endsection
 
 @section('content')
-    <form action="{{ route('students.update',$students->id) }}" method="post">
-        @csrf
-        @method('PUT')
-        <div class="mb-3">
-            <label for="id" >Id</label>
-            <input type="text" name="id" value="{{ $students->id }}" class="form-control" placeholder="Id">
-        </div>
-        <div class="mb-3">
-            <label for="name" > Name</label>
-            <input type="text" name="name" value="{{ $students->name }}" class="form-control" placeholder="Enter Name">
-        </div>
-        <div class="mb-3">
-            <label for="father_name">Father Name</label>
-            <input type="text" name="father_name" value="{{ $students->father_name }}" class="form-control" placeholder="Enter Father Name">
-        </div>
-        <div class="mb-3">
-            <label for="gender">Gender</label>
-            <select id="gender" name="gender" aria-label="Select your gender identity" type="text"  class="form-control" value="{{ $students->gender }}" placeholder="Enter Gender">
+   {!! html()->modelForm($student,'PUT',route('students.update',$student->id))->open() !!}
+   @csrf
+@include('form')
 
-    <option value="male">Male</option>
-    <option value="female">Female</option>
-    
-</select>
-        </div>
-         <div class="mb-3">
-            <label for="hobbies">Hobbies</label></br>
-            <input type="checkbox" id="hobbies" name="hobbies[]" value="cricket">
-            <label for="hobbies"> Cricket</label><br>
-            <input type="checkbox" id="hobbies" name="hobbies[]" value="reading">
-            <label for="hobbies"> Reading</label><br>
-            <input type="checkbox" id="hobbies" name="hobbies[]" value="gardening">
-            <label for="hobbies"> Gardening</label><br>
-            <input type="checkbox" id="hobbies" name="hobbies[]" value="multiple hobbies">
-            <label for="hobbies"> Multiple Hobbies</label><br>
-        </div>
-        <div class="mb-3">
-            <label for="dob">Date of Birth</label>
-            <input type="date" name="dob" value="{{ $students->dob }}" class="form-control">     
-        </div>
-        <button type="submit" class="btn btn-info text-white">Save</button>
+<div class="d-flex gap-2">
+                <button type="submit" class="btn btn-primary">Update Student</button>
+                <a href="{{ route('students.index') }}" class="btn btn-secondary">Cancel</a>
+            </div>
+        
+        {!! html()->form()->close() !!}
 
-    </form>
-@endsection
+
+   @endsection

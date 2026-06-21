@@ -10,10 +10,13 @@ class Student extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','father_name','hobbies','gender','dob'];
-   
-    
-public function hobbies(){
-    return $this->belongsToMany(Hobbies::class,'student_hobbies','student_id','hobbies_id');
-}
+protected $fillable = [
+    'name',
+    'father_name',
+    'gender',
+    'dob'
+];
+    public function hobbies()
+    {
+return $this->belongsToMany(Hobbies::class, 'student_hobbies', 'student_id', 'hobbies_id');    }
 }
