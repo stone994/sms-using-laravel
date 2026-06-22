@@ -27,7 +27,7 @@
         ->id('gender')
         ->attribute('aria-label', 'Select your gender identity')
     !!}
-    {!! $errors->first('gender','<label class="text-danger mt-2">:message</label>') !!}
+    {!! $errors->first('gender','<label class="text-white mt-2">:message</label>') !!}
 
 </div>
 <div class="mb-3">
@@ -39,3 +39,8 @@
 )->class('form-select')->multiple() !!}
     {!! $errors->first('hobbies_id', '<label class="text-danger mt-2">:message</label>') !!}
 </div>
+@if ($errors->any())
+    @foreach ($errors->all() as $error)
+        <p>{{ $error }}</p>
+    @endforeach
+@endif

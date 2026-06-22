@@ -16,6 +16,7 @@ $students = Student::with('hobbies')
     ->orderBy('id','desc')
     ->get();
             return view('home',compact('students'));
+                
     }
 
     /**

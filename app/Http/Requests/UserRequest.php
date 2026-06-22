@@ -4,8 +4,9 @@ namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Hash;
 
-class StudentRequest extends FormRequest
+class UserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,15 +22,10 @@ class StudentRequest extends FormRequest
      * @return array<string, ValidationRule|array<mixed>|string>
      */
     public function rules(): array
-{
-    return [
-        'name' => 'required|string|max:255',
-        'father_name' => 'required|string|max:255',
-        'dob' => 'required|date',
-        'gender' => 'required|in:male.female',
-        'hobbies_id' => 'required|array|min:1',
-        'hobbies_id.*' => 'exists:hobbies,id',
-        
-    ];
-}
+    {
+        return [
+            'name'=>'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6|confirmed',             ];
+    }
 }
