@@ -26,7 +26,7 @@ class StudentRequest extends FormRequest
         'name' => 'required|string|max:255',
         'father_name' => 'required|string|max:255',
         'dob' => 'required|date',
-        'gender' => 'required|in:male.female',
+        'gender' => 'required|in:male,female',
         'hobbies_id' => 'required|array|min:1',
         'hobbies_id.*' => 'exists:hobbies,id',
         

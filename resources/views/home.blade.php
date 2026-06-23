@@ -1,9 +1,5 @@
-@extends('layout')
-
-@section('title', 'All Students')
-
-@section('content')
-
+<x-app-layout>
+    <div class="row">
 <div class="mb-3">
     <a href="{{ route('students.create') }}" class="btn btn-info text-white">
         + Add Student
@@ -72,5 +68,5 @@
         @endforeach
     </tbody>
 </table>
-
-@endsection
+</div>
+</x-app-layout>

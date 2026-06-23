@@ -6,7 +6,13 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                        <span class="flex items-center gap-2 text-2xl font-bold">
+    <span class="text-blue-600">✦</span>
+    <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+        SMS 
+    </span>
+</span>
+                        {{--  <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />--}}
                     </a>
                 </div>
 
@@ -37,7 +43,9 @@
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
-
+ <x-dropdown-link :href="route('students.index')">
+                            {{ __('Students') }}
+                        </x-dropdown-link>
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf

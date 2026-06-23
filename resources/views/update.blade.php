@@ -1,10 +1,4 @@
-@extends('layout')
-
-@section('title')
-    Update User
-@endsection
-
-@section('content')
+<x-app-layout>
    {!! html()->modelForm($student,'PUT',route('students.update',$student->id))->open() !!}
    @csrf
 @include('form')
@@ -16,5 +10,4 @@
         
         {!! html()->form()->close() !!}
 
-
-   @endsection
+        </x-app-layout>

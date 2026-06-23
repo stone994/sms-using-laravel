@@ -1,10 +1,4 @@
-@extends('layout')
-
-@section('title')
-    Add User
-@endsection
-
-@section('content')
+<x-app-layout>
     {!! html()->form('POST', route('students.store'))->open() !!}
 @csrf
     @include('form')
@@ -15,4 +9,4 @@
     </div>
 
     {!! html()->form()->close() !!}
-@endsection
+</x-app-layout>

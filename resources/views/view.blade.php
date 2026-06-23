@@ -1,10 +1,4 @@
-@extends('layout')
-
-@section('title')
-    View User
-@endsection
-
-@section('content')
+<x-app-layout>
 
 <table class="table table-striped table-bordered">
     <tr>
@@ -46,4 +40,4 @@
     Back
 </a>
 
-@endsection
+</x-app-layout>
