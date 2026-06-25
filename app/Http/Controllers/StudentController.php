@@ -16,6 +16,10 @@ $students = Student::with('hobbies')
     ->orderBy('id','desc')
     ->get();
             return view('home',compact('students'));
+            abort_if(!auth()->user()->hasAnyRole(['admin', 'teacher']), 403);
+
+    $students = User::role('student')->get(); // Ya jo bhi aapka logic hai students lane ka
+    return view('students.index', compact('students'));
                 
     }
 

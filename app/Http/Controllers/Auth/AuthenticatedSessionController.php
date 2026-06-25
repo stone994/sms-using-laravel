@@ -18,7 +18,6 @@ class AuthenticatedSessionController extends Controller
     {
         return view('auth.login');
     }
-    
 
     /**
      * Handle an incoming authentication request.
@@ -29,7 +28,19 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        $user = auth()->user();
+
+        // Admin ya Teacher ho toh Students CRUD ke index page par bhejein
+        if ($user->hasRole('admin') || $user->hasRole('teacher')) {
+            return redirect()->route('students.index');
+        } 
+        // Student ho toh Student dashboard par bhejein
+        elseif ($user->hasRole('student')) {
+            return redirect('/student/dashboard');
+        }
+
+        // Baki kisi bhi case ke liye default dashboard
+        return redirect('/dashboard');
     }
 
     /**
